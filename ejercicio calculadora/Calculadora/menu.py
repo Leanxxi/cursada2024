@@ -9,11 +9,12 @@ def menu():
         opcion = int(input("Su opcion: "))
         
         if opcion == 1:
-            print("Ingreso Primer Operando")
+            primer_operando = int(input("Ingreso Primer Operando"))
         elif opcion == 2:
-            print("Ingreso Segundo Operando")
+            segundo_operando = int(input("Ingreso Segundo Operando"))
         elif opcion == 3:
-            print("Calculo todas las operaciones")
+            pass
+            #if primer_operando ==  or segundo_operando:
         elif opcion == 4:
             print("Informo todos los resultados")
         elif opcion == 5:
