@@ -9,12 +9,18 @@ def menu():
         opcion = int(input("Su opcion: "))
         
         if opcion == 1:
-            primer_operando = int(input("Ingreso Primer Operando"))
+            primer_operando = ingresar_entero()
         elif opcion == 2:
-            segundo_operando = int(input("Ingreso Segundo Operando"))
+            segundo_operando = ingresar_entero()
         elif opcion == 3:
             pass
-            #if primer_operando ==  or segundo_operando:
+            suma = primer_operando + segundo_operando
+            resta = primer_operando - segundo_operando
+            division = primer_operando / segundo_operando
+            multiplicacion = primer_operando * segundo_operando
+            potencia = primer_operando ** segundo_operando
+            resto = primer_operando % segundo_operando
+            factorial = primer_operando
         elif opcion == 4:
             print("Informo todos los resultados")
         elif opcion == 5:
@@ -27,3 +33,5 @@ def menu():
     
     
 menu()
+
+

@@ -1,3 +1,10 @@
-def ingresar_operandoA():
-    A = input("ingrese Operando A")
-    return A
+
+def ingresar_entero():
+    while True:
+        entero = int(input('ingrese entero'))
+        if type(entero) == int:
+            break
+        else:
+            print("Error en ingresar entero")
+    return entero
+
