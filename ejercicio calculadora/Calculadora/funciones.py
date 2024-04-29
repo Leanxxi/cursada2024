@@ -1,10 +1,13 @@
 
 def ingresar_entero():
     while True:
-        entero = int(input('ingrese entero'))
-        if type(entero) == int:
+        entero = input('ingrese entero')
+        if entero.isdigit():
+            numero = int(entero)
+            print("El número ingresado es:", numero)
             break
         else:
-            print("Error en ingresar entero, ingrese nuevamente...")
-    return entero
-    
+            print("Error: La entrada no es un número.")
+    return numero
+
+        
