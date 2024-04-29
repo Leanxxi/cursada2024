@@ -10,4 +10,11 @@ def ingresar_entero():
             print("Error: La entrada no es un número.")
     return numero
 
+def realizar_factorial(numero):
+    if numero == 0:
+        resultado = 1
+    else: 
+        resultado = numero * realizar_factorial(numero -1)
+    return resultado
+
         

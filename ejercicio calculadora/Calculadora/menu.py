@@ -8,7 +8,6 @@ def menu():
     bandera_tercer_opcion = False
     while(True):
         print("MENU CALCULADORA\n1.Ingresar Primer Operando\n2.Ingresar Segundo Operando\n3.Calcular Todas las operaciones\n4.Informar Resultados\n5.Salir")
-        
         opcion = int(input("Su opcion: "))
         
         if opcion == 1:
@@ -30,7 +29,7 @@ def menu():
                     mensaje = "no se puede dividir por 0"
                     resto = mensaje
                     division = mensaje
-                factorial = primer_operando
+                factorial = realizar_factorial(primer_operando)
                 bandera_tercer_opcion = True
             else:
                 print("asegurese de que haya ingresado un valor en el primer y el segundo operando")
@@ -47,7 +46,6 @@ def menu():
             print("Opcion invalida ingrese números entre 1-5")
         os.system("pause")
         os.system("cls")
-    
     
 menu()
 
