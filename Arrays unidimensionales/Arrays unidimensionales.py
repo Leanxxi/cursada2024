@@ -15,26 +15,35 @@
 
 from funcionesArrays import *
 
-#---------------------------------------------------------------
-#ejercicio 1
+
 
 
 lista_creada = crear_lista_de_numeros()
 
-#print(f"promedio de numeros{calcular_el_promedio_de_listas(lista_creada)}")
-#----------------------------------------------------------------
-#ejercio 2
-#Escribir una función parecida a la anterior, pero la misma deberá calcular y devolver el
-#promedio de los números positivos.
 
-def calcular_promedio_positivos(lista : list):
-    suma_de_lista = 0
-    for i in range(len(lista)):
-        if lista[i] > 0:
-            suma_de_lista += lista[i]
-    
-    promedio = suma_de_lista / len(lista)
-    return promedio
+
 
 print(f"promedio positivos = {calcular_promedio_positivos(lista_creada)}")
 
+while True:
+    opcion = input("ingrese opcion")
+
+    match opcion:   
+        case 1:
+            #1. Escribir una función que reciba una lista de enteros, la misma calculará y devolverá el
+            # promedio de todos los números.
+            pass
+        case 2:
+            pass
+        case 3:
+            pass
+        case 4:
+            pass
+        case 5:
+            pass
+        case 6:
+            pass
+        case 7:
+            break
+        case _:
+            print("error: opcion inesperada")
