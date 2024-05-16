@@ -50,7 +50,7 @@ while True:
         case 4:
             # 4. Escribir una función que reciba como parámetros una lista de enteros y retorne la posición
             # del valor máximo encontrado.  
-            print(f"posicion = {encontrar_max_min_posc_lista(lista_creada,'posicion_maximo')}")
+            print(f"posicion = {encontrar_max_min_posc_lista(lista_creada,'posicion_maximo')}")                    
         case 5:
             # 5. Escribir una función que reciba como parámetros una lista de enteros y muestre la/las
             # posiciones en donde se encuentra el valor máximo hallado.
@@ -61,7 +61,9 @@ while True:
             # reemplazar cada ocurrencia del nombre a reemplazar en la lista con su correspondiente
             # reemplazo y luego retornar la cantidad total de reemplazos realizados.
 
-            print(f"promedio positivos = {calcular_promedio_positivos(lista_creada)}")
+            print(f"{lista_de_nombres}")
+            print(f"cantidad de reemplazos = {reemplazar_nombres(lista_de_nombres, 'Javier', 'Carlos')}")
+            print(f"{lista_de_nombres}")
         case 7:
             break
         case _:

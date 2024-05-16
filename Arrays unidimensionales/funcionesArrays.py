@@ -188,10 +188,23 @@ def encontrar_pos_maximos(lista_de_numeros:list):
 # reemplazar cada ocurrencia del nombre a reemplazar en la lista con su correspondiente
 # reemplazo y luego retornar la cantidad total de reemplazos realizados.
 
-def reemplazar_nombres(lista_de_nombres : list, nombre_a_reemplazar, reemplazo)->int:
-    for nombre in lista_de_nombres:
-        if nombre == nombre_a_reemplazar:
-            nomb
+def reemplazar_nombres(lista_de_nombres : list, nombre_a_reemplazar : str, reemplazo : int)->list:
+    """reemplaza los nombres seleccionados con su correspondiente reemplazo
 
+    Args:
+        lista_de_nombres (list): lista de nombres 
+        nombre_a_reemplazar (str): nombre a reemplazar
+        reemplazo (str): reemplazo del nombre
+
+    Returns:
+        int: cantidad de reemplazos 
+    """
+    cantidad_de_reemplazos = 0
+    for i in range(len(lista_de_nombres)):
+        if lista_de_nombres[i] == nombre_a_reemplazar:
+            lista_de_nombres[i] = reemplazo.upper()
+            cantidad_de_reemplazos += 1
+    return cantidad_de_reemplazos
+    
 
 
