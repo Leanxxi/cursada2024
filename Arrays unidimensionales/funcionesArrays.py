@@ -153,15 +153,17 @@ def encontrar_max_min_posc_lista(lista_de_numeros : list, maximo_minimo_posicion
             minimo = lista_de_numeros[i]
 
     if maximo_minimo_posicion == "maximo":
-        return maximo
+        devuelvo = maximo
     elif maximo_minimo_posicion == "minimo":
-        return minimo
+        devuelvo = minimo
     elif maximo_minimo_posicion == "posicion_maximo":
-        return posicion_maximo
+        devuelvo = posicion_maximo
     elif maximo_minimo_posicion == "posicion_minimo":
-        return posicion_minimo
+        devuelvo = posicion_minimo
     else:
-        print("error: argumento invalido")
+        raise ValueError("error: argumento invalido")
+    
+    return devuelvo
 
 #ejercicio 5
 # 5. Escribir una función que reciba como parámetros una lista de enteros y muestre la/las

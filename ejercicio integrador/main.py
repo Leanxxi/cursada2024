@@ -16,5 +16,9 @@
 # imprimir en pantalla
 
 
-lista_dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"]
-lista_ingresos = [0,0,0,0,0,0,0]
+from funciones import *
+
+from menus import menu_principal
+
+if __name__ == '__main__':
+    menu_principal()

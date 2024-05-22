@@ -17,7 +17,7 @@
 import os
 
 lista_dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"]
-lista_ingresos = [0,0,0,0,0,0,0]
+lista_ingresos = [10,30,40,50,90,9,0]
 
 def ingresar_entero(mensaje = "ingrese entero")->int:
     """ingresa un numero entero, lo valida y lo devuelve
@@ -36,14 +36,14 @@ def ingresar_entero(mensaje = "ingrese entero")->int:
             print("Error: La entrada no es un número.")
 
 
-def ingresar_flotante()->float:
+def ingresar_flotante(mensaje : str)->float:
     """ingresa un caracter, intenta cambiarlo a un numero flotante, si tiene exito lo devuelve y rompe el bucle
     si no muestra un mensaje de error
     Returns:
         float: numero flotante ingresado
     """
     while True:  # Bucle para continuar solicitando hasta que se ingrese un flotante válido
-        entrada = input("Ingrese un número flotante: ")
+        entrada = input(mensaje)
         try:
             # Intenta convertir la entrada a un número flotante
             numero = float(entrada)
@@ -53,75 +53,118 @@ def ingresar_flotante()->float:
             # Si falla la conversión, muestra un mensaje y continúa el bucle
             print("Error: El dato ingresado no es un número flotante. Inténtelo de nuevo.")
 
-def mostrar_menu_principal():
-    print("""       Bienvenido al Menu
-            1-Registrar ingresos
-            2-Analizar datos
-            3-Mostrar todos los datos
-            4-salir
+def registros_semanales(lista_ingresos : list, i : int, lista_dias : list):
+    """modifica el valor ingresado segun el día correspondiente
 
-    """)
+    Args:
+        lista_ingresos (list): lista de los ingresos por dia
+        i (int): valor correspondiente a cada día de la semana
+        lista_dias (list): lista con los nombres de los días
+    """    
+    lista_ingresos[i] = ingresar_flotante(f"ingrese su monto para el día {lista_dias[i]}")
 
-def menu_principal():
-    while True:
+
+def encontrar_max_min_posc_lista(lista_de_numeros : list, maximo_minimo_posicion = "maximo")-> float |int:
+    """
+    Ecuentra el maximo, el minimo o la posicion de los mismos segun el parametro
+    Args:
+        lista_de_numeros (list):lista de numeros
         
-        opcion = ingresar_entero('ingrese opcion')
-        match opcion: 
-            case 1:
-                
-                pass          
-            case 2:
-                pass
-            case 3:
-                pass
-            case 4:
-                pass                  
-            case 5:
-                pass
-            case 6:
-                pass
-            case 7:
-                break
-            case _:
-                print("error: opcion inesperada")
-        os.system("pause")
-        os.system("cls")
+        maximo_minimo_posicion (str, optional): "maximo" = devuelve el valor maximo en la lista. el argumento por defecto es "maximo".
+            Returns:
+                float: valor maximo 
+        
+        maximo_minimo_posicion (str, optional):"minimo" devuelve el valor minimo de la lista
+            Returns:
+                float: valor minimo        
+        maximo_minimo_posicion (str, optional):"posicion_minimo": devuelve la posicion del valor minimo en la lista. 
+            Returns:
+                int: posicion del valor minimo
+        
+        maximo_minimo_posicion (str, optional):"posicion_maximo": devuelve la posicion del valor maximo en la lista 
+            Returns:
+                int: posicion del valor maximo 
+                  """
+    for i in range(len(lista_de_numeros)):
+        if i == 0:
+            maximo = lista_de_numeros[i]
+            minimo = lista_de_numeros[i]
+            posicion_maximo = 0
+            posicion_minimo = 0
+        elif lista_de_numeros[i] > maximo:
+            maximo = lista_de_numeros[i]
+            posicion_maximo = i
+        elif lista_de_numeros[i] < minimo:
+            posicion_minimo = i
+            minimo = lista_de_numeros[i]
 
-def mostrar_submenu_ingresos():
-    print("""
-----------------Menu de registros de ingresos----------------
-        1-Registrar Lunes
-        2-Registrar Martes
-        3-Registrar Miercoles
-        4-Registrar Jueves
-        5-Registrar Viernes
-        6-Registrar Sabados
-        7-Registrar Domingos
-        8-Volver al menu principal  
+    if maximo_minimo_posicion == "maximo":
+        return maximo
+    elif maximo_minimo_posicion == "minimo":
+        return minimo
+    elif maximo_minimo_posicion == "posicion_maximo":
+        return posicion_maximo
+    elif maximo_minimo_posicion == "posicion_minimo":
+        return posicion_minimo
+    else:
+        print("error: argumento invalido")
 
-""")
 
-def sub_menu_ingresos():
-    mostrar_submenu_ingresos()
-    while True:
-        opcion = input("Ingrese Opcion")
 
-        match opcion:
-            case '1':
-                pass
-            case '2':
-                pass
-            case '3':
-                pass
-            case '4':
-                pass
-            case '5':
-                pass
-            case '6':
-                pass
-            case '7':
-                pass
-            case '8':
-                break
+def calcular_el_promedio_de_listas(lista_de_numeros : list)->float :
+    """calcula el promedio de la lista de numeros argumentada
+    Args:
+        lista (list): lista de numeros
+    Returns:
+        float: promedio de la lista de numeros
+    """
+    suma_de_lista = 0
+    for i in range(len(lista_de_numeros)):
+        suma_de_lista += lista_de_numeros[i]
+    
+    promedio = suma_de_lista / len(lista_de_numeros)
+    return promedio
 
-def registros_semanales(lista_de_semana):
+def calcular_suma_de_lista(lista_de_numeros : list)-> int | float :
+    """
+    suma todos los valores de la lista y los devuelve
+
+    Args:
+        lista_de_numeros (list): lista de numeros sumables
+
+    Returns:
+        int | float: suma total de cada valor de la lista
+    """
+    suma_de_lista = 0
+    for i in range(len(lista_de_numeros)):
+        if lista_de_numeros[i] > 0:
+            suma_de_lista += lista_de_numeros[i]
+    
+    return suma_de_lista
+
+def limitar_rango_de_lista(lista_completa : list, limite_superior : int, limite_inferior = 0 )->list:
+    """_summary_
+
+    Args:
+        lista_completa (list): _description_
+        limite_superior (int): _description_
+        limite_inferior (int, optional): _description_. Defaults to 0.
+
+    Returns:
+        list: _description_
+    """
+    lista_cortada = []
+    for i in range(len(lista_completa)):
+        if i <= limite_superior or i >= limite_inferior:
+            lista_cortada.append(lista_completa[i])
+    
+    return lista_cortada
+
+def calcular_variacion_valor_anterior(lista_de_numeros):
+    lista_de_variaciones = []
+    lista_de_calculos = []
+    for i in range(len(lista_de_numeros)):
+        if i > 0:
+            variacion = lista_de_numeros[i] - lista_de_numeros[i-1]
+            lista_de_calculos.append(f"{i} - {i-1}")
+            lista_de_variaciones.append(variacion)
