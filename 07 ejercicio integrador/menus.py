@@ -41,9 +41,14 @@ def menu_principal():
                 dia_con_menos_ingresos = encontrar_max_min_posc_lista(lista_ingresos,"posicion_minimo" )
                 promedio_ingresos = calcular_el_promedio_de_listas(lista_ingresos)
                 suma_ingresos = calcular_suma_de_lista(lista_ingresos)
-                lista_dia_habil = limitar_rango_de_lista(lista_ingresos,5)
+                lista_dia_habil = limitar_rango_de_lista(lista_ingresos,5)#limitado a 5 por los dias de la semana
                 promedio_dia_habil = calcular_el_promedio_de_listas(lista_dia_habil)
-                promedio_finde = calcular_el_promedio_de_listas(lista_ingresos,7,5)
+                promedio_finde = calcular_el_promedio_de_listas(limitar_rango_de_lista(lista_ingresos,7,5))#7 por el ultimo día de la semana y 5 para que inicie el calculo en el sábado
+                lista_de_variaciones = calcular_variacion_valor_anterior(lista_ingresos,lista_dias)
+                valor_variacion_mas_alta = encontrar_max_min_posc_lista(lista_de_variaciones)
+                posicion_variacion_mas_alta = encontrar_max_min_posc_lista(lista_de_variaciones, "posicion_maximo")
+
+
                 bandera_de_calculos = True
             case 3:
                 if bandera_de_calculos:
@@ -53,6 +58,7 @@ def menu_principal():
                     print(f"la totalidad de los ingresos es:{suma_ingresos}")
                     print(f"promedio dia de semana:{promedio_dia_habil}")
                     print(f"promedio fin de semana:{promedio_finde}")
+                    print(f"La variaciaon más alta es de: {valor_variacion_mas_alta} del día {lista_dias[posicion_variacion_mas_alta]} al {lista_dias[posicion_variacion_mas_alta + 1]}")
                     
                 else:
                     print("Error: no ha analizado los datos de la opcion 2")

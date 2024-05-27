@@ -15,9 +15,7 @@
 # 3. Muestra de datos: Una vez calculados todos los datos del punto 2, se deberán
 # imprimir en pantalla
 import os
-
-lista_dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"]
-lista_ingresos = [10,30,40,50,90,9,0]
+from datos import (lista_dias,lista_ingresos)
 
 def ingresar_entero(mensaje = "ingrese entero")->int:
     """ingresa un numero entero, lo valida y lo devuelve
@@ -99,17 +97,18 @@ def encontrar_max_min_posc_lista(lista_de_numeros : list, maximo_minimo_posicion
             minimo = lista_de_numeros[i]
 
     if maximo_minimo_posicion == "maximo":
-        return maximo
+        devuelvo = maximo
     elif maximo_minimo_posicion == "minimo":
-        return minimo
+        devuelvo = minimo
     elif maximo_minimo_posicion == "posicion_maximo":
-        return posicion_maximo
+        devuelvo = posicion_maximo
     elif maximo_minimo_posicion == "posicion_minimo":
-        return posicion_minimo
+        devuelvo = posicion_minimo
     else:
         print("error: argumento invalido")
-
-
+    
+    return devuelvo
+ 
 
 def calcular_el_promedio_de_listas(lista_de_numeros : list)->float :
     """calcula el promedio de la lista de numeros argumentada
@@ -160,11 +159,12 @@ def limitar_rango_de_lista(lista_completa : list, limite_superior : int, limite_
     
     return lista_cortada
 
-def calcular_variacion_valor_anterior(lista_de_numeros):
+def calcular_variacion_valor_anterior(lista_de_numeros,lista_dias):
     lista_de_variaciones = []
-    lista_de_calculos = []
     for i in range(len(lista_de_numeros)):
         if i > 0:
             variacion = lista_de_numeros[i] - lista_de_numeros[i-1]
-            lista_de_calculos.append(f"{i} - {i-1}")
+            print(f"{lista_dias[i-1]} - {lista_dias[i]} = {variacion}")
             lista_de_variaciones.append(variacion)
+    return lista_de_variaciones
+
