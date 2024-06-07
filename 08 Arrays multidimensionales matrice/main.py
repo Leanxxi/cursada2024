@@ -16,21 +16,11 @@
 # 6. El promedio de nota de los alumnos masculinos.
 # 7. El porcentaje de alumnas que promocionaron sobre el total de alumnas.
 
-def ingresar_entero(mensaje="Ingrese un número entero: ") -> int:
-    """
-    Solicita al usuario que ingrese un número entero, lo valida y lo devuelve.
 
-    Args:
-        mensaje (str): El mensaje que se muestra al solicitar la entrada.
 
-    Returns:
-        int: El número entero ingresado por el usuario.
-    """
-    while True:
-        entrada = input(mensaje)
-        try:
-            numero = int(entrada)
-            print("Valor ingresado:", numero)
-            return numero
-        except ValueError:
-            print("Error: La entrada no es un número entero válido. Inténtelo de nuevo.")
+from funcionesMatrices import *
+
+from menusMatrices import menu_principal
+
+if __name__ == '__main__':
+    menu_principal()
