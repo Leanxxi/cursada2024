@@ -1,4 +1,12 @@
-def ingresar_entero(mensaje="Ingrese un número entero: ") -> int:
+import os
+import csv
+import json
+from datetime import datetime
+
+# Funciones de validación
+
+# Funciones de entrada de datos
+def ingresar_entero(mensaje = "Ingrese un número entero: ") -> int:
     """
     Solicita al usuario que ingrese un número entero, lo valida y lo devuelve.
 
@@ -32,9 +40,10 @@ def ingresar_entero_positivo(mensaje = "ingrese entero positivo")->int:
             return numero
         else:
             print("Error: La entrada no es un número.")
+# Funciones de gestión de proyectos
 
-def mostrar_lista(lista):
-    for i in range(len(lista)):
-        for j in range(len(lista[i])):
-            print(f"|| {lista[i][j]}", end= " ")
-        print("")
+
+# Funciones de manejo de archivos
+
+#funciones extras
+

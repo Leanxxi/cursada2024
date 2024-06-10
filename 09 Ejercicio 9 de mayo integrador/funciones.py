@@ -19,7 +19,7 @@ def ingresar_entero_positivo(mensaje = "ingrese entero positivo")->int:
 
 def ingresar_dni():
     while True:
-        dni = input("ingrese dni del dueño de la mascota")
+        dni = ingresar_entero_positivo("ingrese dni del dueño de la mascota")
         if dni > 0 or type(dni) == int: 
             break
         else:
@@ -35,6 +35,26 @@ def ingresar_sexo():
             print("ingrese sexo correctamente")
     return sexo
 
+def ingresar_historial_medico_mascota_nueva():
+    while True:
+        lista_historial = []
+        historial_medico= input("ingrese historial medico")
+        if historial_medico == None:
+            print("ingrese un historial medico valido")
+        else:
+            lista_historial.append(historial_medico)
+            break
+    return lista_historial
+
+def ingresar_nuevo_historial():
+    while True:
+        historial_medico = input("ingrese historial medico")
+        if historial_medico == None:
+            print("ingrese un historial medico valido")
+        else:
+            break
+        return historial_medico
+
 def registrar_mascota(dni):
     cliente = []
     dni_duenio = dni
@@ -45,12 +65,7 @@ def registrar_mascota(dni):
     peso_mascota = ingresar_entero_positivo("ingrese peso de la mascota")
     ultima_visita = datetime.date.today()
     ultima_visita = ultima_visita.strftime("%d/%m/%Y")
-    while True:
-        historial_medico= input("ingrese historial medico")
-        if historial_medico == None:
-            print("ingrese un historial medico valido")
-        else:
-            break
+    historial_medico = ingresar_historial_medico_mascota_nueva()
     cliente.append(dni_duenio)
     cliente.append(nombre_mascota)
     cliente.append(edad_mascota)
@@ -70,23 +85,33 @@ def enlistar_datos(lista, indice):
         #elemento_guardado = elemento[indice] 
         elemento[indice] = [elemento[indice]]
 
-def encontrar_cliente(registro: list, cliente : list)->bool:
-    for cliente_registrado in registro:
-        if cliente_registrado[0] == cliente[0]:
-            respuesta = input("al parecer ya hay una mascota registrada a su DNI, ¿desea ingresar una nueva mascota? si/no").upper()
-            while True:
-                if respuesta == "SI":
-                    respuesta = True
-                    break
-                elif respuesta == "NO":
-                    respuesta = False
-                    break
-                else:
-                    print("respuesta invalida, por favor responda con 'si' o con 'no'")
+def contar_mascotas(registro_mascotas, dni, nombre_mascota):
+    mascosta_encontrada = False
+    for i in range(len(registro_mascotas)):
+        if registro_mascotas[i][0] == dni and registro_mascotas[i][1] == nombre_mascota:
+            mascosta_encontrada = True
+    return mascosta_encontrada
+
+def preguntar_si_o_no(pregunta = "desea continuar si/no"):
+    """_summary_
+
+    Args:
+        pregunta (str, optional): _description_. Defaults to "desea continuar si/no".
+
+    Returns:
+        _type_: _description_
+    """
+    while True:
+        respuesta = input(pregunta)
+        respuesta = respuesta.capitalize()
+        if respuesta != "Si" and respuesta != "No":
+            print("respuesta invalida reponda con 'Si' o 'No'")
         else:
-            print("no se encontró, ningun cliente con ese DNI, ingrese una nueva mascota")
-            respuesta = True
+            break
     return respuesta
 
-#def agregar_nuevo_historia():
-
+def mostrar_lista(lista: list):
+    for i in range(len(lista)):
+        for j in range(len(lista[i])):
+            print(f"|| {lista[i][j]}", end= " ")
+        print("")

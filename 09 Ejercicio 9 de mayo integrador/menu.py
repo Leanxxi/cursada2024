@@ -29,7 +29,7 @@
 
 
 from funciones import *
-
+import os
 # fecha_hoy = datetime.date.today() para obtener la fecha de hoy
 # fecha_formato_perzonalizado = fecha_hoy.strftime("%d/%m/%Y") para cambiar el formato a dia/mes/año
 
@@ -44,28 +44,65 @@ registro_mascotas = [
     ["56789012", "Coco", 2, "Gato", "Hembra", 4.8, "03/05/2024", "Desparasitación"]
 ]
 
+def mostrar_menu():
+    print("""bienvenido al Menu de la veterinaria
+opciones:
+          1-Registrar o logear mascota
+          2-Dar consulta medica
+          3-mostrar todas las mascotas
+          4-mostrar solo mascotas que superen el promedio de edad
+          5-calcular promedio de mascotas
+          6-contar cantidad de perros
+          7-identificar tipo de mascota mas registrada
+          8-Salir
+""")
 
 normalizar_datos(registro_mascotas, 0)
 enlistar_datos(registro_mascotas, 7) #transforma el dato del indice 7 en una lista para que se le pueda añadir un historial
 
 while(True):
+    mostrar_menu()
     opcion = int(input("Elija una opción"))
     match opcion:
         case 1:
+            flag_mascota_encontrada = False
+            
             dni = ingresar_dni()
-            respuesta = encontrar_cliente(registro_mascotas, nueva_mascota)
-            if respuesta: #si la respuesta es afirmativa va a agregar una nueva mascota
-                nueva_mascota = registrar_mascota(dni)
-                registro_mascotas.append(nueva_mascota)
-            else: #si la respues es negativa va a agregar un nuevo historial medico a la mascota ya existente
-                for i in range(len(registro_mascotas)):
-                    if registro_mascotas[i][0] == dni:
-                        mascota = input("ingrese nombre de la mascota a cambiar")
-                        if mascota == registrar_mascota[i][3]:
-                            pass
+            nombre_mascota = input("ingrese el nombre de su mascota para logearse ").capitalize()        
+            mascota_encontrada = contar_mascotas(registro_mascotas, dni, nombre_mascota)
+            flag_login = True
+            if mascota_encontrada == True:
+                
+                print(f"login realizado con exito")
+            else:
+                print("al parecer no hay ninguna mascota registrada a ese nombre y DNI")
+                respuesta = preguntar_si_o_no("¿desea añadir mascota nueva?")
+                if respuesta == 'Si':
+                    #registra nueva mascota
+                    nueva_mascota = registrar_mascota(dni)
+                    registro_mascotas.append(nueva_mascota)
+                if respuesta == 'No':
+                    flag_login = False
+                    print("saliendo...")
+            
         case 2:
-            print("Dar consulta medica.")
+            if flag_login == True:
+                while flag_mascota_encontrada == False:
+                                       
+                    for mascota in registro_mascotas:
+                        if mascota[1] == nombre_mascota and dni == mascota[0]:
+                            historial = input("ingrese nuevo historial medico: ")
+                            mascota[7].append(historial)
+                            flag_mascota_encontrada = True
+                    
+                    if flag_mascota_encontrada == False:
+                        print("no existe ninguna mascota asignada a ese nombre y a ese dni, escriba el nombre correctamente")
+
+                    print("Dar consulta medica.")
+            else:
+                print("debe logear o registrar una mascota para poder actualizar su historial medico")
         case 3:
+            mostrar_lista(registro_mascotas)
             print("Mostrar todas las mascotas.")
         case 4:
             print("Mostrar solo mascotas que superen promedio de edad.")
@@ -78,5 +115,7 @@ while(True):
         case 8:
             print("Saliendo del sistema.")
             break
+    os.system("pause")
+    os.system("clear")
     
 
